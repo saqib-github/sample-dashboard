@@ -1,4 +1,6 @@
-# vuetify-practice2
+# sample-dashboard
+
+![Screenshot](dashboard.png)
 
 ## Project setup
 ```
