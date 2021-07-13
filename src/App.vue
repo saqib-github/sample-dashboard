@@ -29,7 +29,7 @@ export default {
 };
 </script>
 <style scoped>
-.v-application {
+/* .v-application {
   line-height: 2 !important;
-}
+} */
 </style>
