@@ -200,7 +200,6 @@ export default {
         { id: 4, name: "Usama Hassan", email: "usama@yahoo.com" },
         { id: 5, name: "Hassan Ali", email: "hassan@yahoo.com" },
         { id: 6, name: "Abu Bakar", email: "abubakar@yahoo.com" },
-        { id: 7, name: "Hello", email: "hello@yahoo.com" },
       ],
     };
   },
