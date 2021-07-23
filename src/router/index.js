@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import ManageUsers from "../views/ManageUsers.vue";
-import ManageComputers from "../views/ManageComputers.vue";
+import ChartOfAccounts from "../views/ChartOfAccounts.vue";
+import VoucherEnteryForm from "../views/VoucherEnteryForm.vue";
+import ExpensesTransactions from "../views/ExpensesTransactions.vue";
 import AccountSettings from "../views/AccountSettings.vue";
 import Subscriptions from "../views/Subscriptions.vue";
 import Invoices from "../views/Invoices.vue";
@@ -16,9 +18,19 @@ const routes = [
     component: ManageUsers,
   },
   {
-    path: "/managecomputers",
-    name: "ManageComputers",
-    component: ManageComputers,
+    path: "/chartofaccounts",
+    name: "ChartOfAccounts",
+    component: ChartOfAccounts,
+  },
+  {
+    path: "/voucherenteryform",
+    name: "VoucherEnteryForm",
+    component: VoucherEnteryForm,
+  },
+  {
+    path: "/expensestransactions",
+    name: "ExpensesTransaction",
+    component: ExpensesTransactions,
   },
   {
     path: "/accountsettings",

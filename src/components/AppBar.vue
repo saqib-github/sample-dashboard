@@ -8,42 +8,73 @@
       :style="{ top: $vuetify.application.top + 'px', zIndex: 6 }"
     >
       <v-list dense>
-        <v-list-item
-          ><v-btn text to="/managecomputers">
-            <v-icon medium class="pr-2">{{ mdiDesktopClassic }}</v-icon
-            >Manage Computers</v-btn
+        <v-menu top :offset-x="offset">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text  v-bind="attrs" v-on="on" class="ml-4">
+            <v-icon medium class="pr-2">{{ mdiTicketPercentOutline }}</v-icon
+            >Voucher</v-btn
           >
-        </v-list-item>
+          </template>
+
+          <v-list>
+           <v-list-item>
+             <v-btn text to="/chartofaccounts">Chart of Accounts</v-btn>
+              <v-btn text to="/voucherenteryform">Voucher Entery Form</v-btn>
+               <v-btn text to="/expensestransactions">Expense Transactions</v-btn>
+           </v-list-item>
+          </v-list>
+        </v-menu>
+        <!-- <v-list-item
+          ><v-btn text to="/managecomputers">
+            <v-icon medium class="pr-2">{{ mdiTicketPercentOutline }}</v-icon
+            >Voucher</v-btn
+          >
+        </v-list-item> -->
         <v-list-item>
           <v-btn text to="/">
-            <v-icon medium class="pr-2">{{
-              mdiAccountSupervisorOutline
-            }}</v-icon
-            >Manage users</v-btn
+            <v-icon medium class="pr-2">{{ mdiCurrencyUsd }}</v-icon
+            >Charges</v-btn
           >
         </v-list-item>
         <v-list-item>
           <v-btn text to="/accountsettings"
             ><v-icon medium class="pr-2">{{ mdiAccountOutline }}</v-icon
-            >Account Settings</v-btn
+            >Supplier</v-btn
           >
         </v-list-item>
         <v-list-item
           ><v-btn text to="/subscriptions"
-            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon>
-            Subscriptions</v-btn
+            ><v-icon medium class="pr-2">{{ mdiReceipt }}</v-icon>
+            Reporting</v-btn
           >
         </v-list-item>
         <v-list-item
           ><v-btn text to="/invoices"
-            ><v-icon medium class="pr-2">{{ mdiReceipt }}</v-icon>
-            Invoices</v-btn
+            ><v-icon medium class="pr-2">{{ mdiReceipt }}</v-icon> Job</v-btn
           >
         </v-list-item>
         <v-list-item>
           <v-btn text to="/paymentmethods"
-            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon> Payment
-            Methods</v-btn
+            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon>
+            Customer</v-btn
+          >
+        </v-list-item>
+        <v-list-item>
+          <v-btn text to="/paymentmethods"
+            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon>
+            Bank</v-btn
+          >
+        </v-list-item>
+        <v-list-item>
+          <v-btn text to="/paymentmethods"
+            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon>
+            Employee</v-btn
+          >
+        </v-list-item>
+        <v-list-item>
+          <v-btn text to="/paymentmethods"
+            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon>
+            Admin</v-btn
           >
         </v-list-item>
       </v-list>
@@ -53,7 +84,7 @@
         ><v-icon v-if="drawer">{{ mdiArrowLeft }}</v-icon></v-app-bar-nav-icon
       >
       <v-toolbar-title class="black--text">
-        <span class="text-h6"> Apple Tech</span>
+        <span class="text-h6"> Accounting Software</span>
         <v-btn icon>
           <v-icon color="black">{{ mdiChevronDown }}</v-icon></v-btn
         ></v-toolbar-title
@@ -108,8 +139,8 @@
 
 <script>
 import { mdiAccountOutline } from "@mdi/js";
-import { mdiAccountSupervisorOutline } from "@mdi/js";
-import { mdiDesktopClassic } from "@mdi/js";
+import { mdiCurrencyUsd } from "@mdi/js";
+import { mdiTicketPercentOutline } from "@mdi/js";
 import { mdiKeyOutline } from "@mdi/js";
 import { mdiReceipt } from "@mdi/js";
 import { mdiChevronDown } from "@mdi/js";
@@ -121,9 +152,9 @@ export default {
   name: "AppBar",
 
   data: () => ({
-    mdiDesktopClassic: mdiDesktopClassic,
+    mdiTicketPercentOutline: mdiTicketPercentOutline,
     mdiAccountOutline: mdiAccountOutline,
-    mdiAccountSupervisorOutline: mdiAccountSupervisorOutline,
+    mdiCurrencyUsd: mdiCurrencyUsd,
     mdiKeyOutline: mdiKeyOutline,
     mdiChevronDown: mdiChevronDown,
     mdiArrowLeft: mdiArrowLeft,
@@ -137,6 +168,7 @@ export default {
       fullName: "Moazzam Ali Boota",
       email: "john.doe@doe.com",
     },
+    offset:true,
   }),
 };
 </script>
