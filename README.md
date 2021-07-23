@@ -1,6 +1,6 @@
 # sample-dashboard
 
-![Screenshot](dashboard.png)
+![Screenshot](accounting-software-pic.png)
 
 ## Project setup
 ```
