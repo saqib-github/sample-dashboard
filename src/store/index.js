@@ -1,6 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import chartofaccounts from "./chartofaccounts/index.js";
+
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -9,7 +12,7 @@ export default new Vuex.Store({
       drawer: true,
     };
   },
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {
+    chartofaccounts: chartofaccounts,
+  }
 });
