@@ -5,48 +5,163 @@ export default {
   namespaced: true,
   state() {
     return {
+      types:['assets', "liability", 'equity', "revenue", "expenses"],
       data: [
         {
           id: "1",
           type: "assets",
           sub_type: "fixed Asset",
           sub_category: "fixed asset sub category",
-          head_accounts: [],
+          head_accounts: [
+            {
+              account_code: "123",
+              account_name: "SMC ltd",
+              credit: 500,
+              debit: 400,
+            },
+            {
+              account_code: "124",
+              account_name: "sdc ltd",
+              credit: 45646,
+              debit: 76786,
+            },
+            {
+              account_code: "6546",
+              account_name: "hjtr ltd",
+              credit: 7876,
+              debit: 65756,
+            },
+          ],
         },
         {
           id: "6",
           type: "assets",
           sub_type: "current Asset",
           sub_category: "current asset sub category",
-          head_accounts: [],
+          head_accounts: [
+            {
+              account_code: "564",
+              account_name: "ghh ltd",
+              credit: 546546,
+              debit: 54645,
+            },
+            {
+              account_code: "6755",
+              account_name: "hgg ltd",
+              credit: 67567567,
+              debit: 4564,
+            },
+            {
+              account_code: "6456",
+              account_name: "hng ltd",
+              credit: 6456,
+              debit: 6546,
+            },
+          ],
         },
         {
           id: "2",
           type: "liability",
           sub_type: "liability subtype",
           sub_category: "liability sub category",
-          head_accounts: [],
+          head_accounts: [
+            {
+              account_code: "46546",
+              account_name: "gfbnf ltd",
+              credit: 564,
+              debit: 464,
+            },
+            {
+              account_code: "64",
+              account_name: "hgn ltd",
+              credit: 75677,
+              debit: 456,
+            },
+            {
+              account_code: "4564",
+              account_name: "nbg  ltd",
+              credit: 46546,
+              debit: 54654,
+            },
+          ],
         },
         {
           id: "3",
           type: "equity",
           sub_type: "equity subtype",
           sub_category: "equity sub category",
-          head_accounts: [],
+          head_accounts: [
+            {
+              account_code: "7567",
+              account_name: "hgh ltd",
+              credit: 5676,
+              debit: 6557,
+            },
+            {
+              account_code: "566",
+              account_name: "hg ltd",
+              credit: 6756,
+              debit: 6575,
+            },
+            {
+              account_code: "5675",
+              account_name: "hgjngh ltd",
+              credit: 65756,
+              debit: 56756,
+            },
+          ],
         },
         {
           id: "4",
           type: "revenue",
           sub_type: "revenue subtype",
           sub_category: "revenue sub category",
-          head_accounts: [],
+          head_accounts: [
+            {
+              account_code: "546546",
+              account_name: "ghn ltd",
+              credit: 54645,
+              debit: 4564,
+            },
+            {
+              account_code: "464",
+              account_name: "mjhgmn ltd",
+              credit: 6456,
+              debit: 456,
+            },
+            {
+              account_code: "56546456",
+              account_name: "ghf ltd",
+              credit: 564,
+              debit: 456,
+            },
+          ],
         },
         {
           id: "5",
-          type: "expences",
+          type: "expenses",
           sub_type: "expences subtype",
           sub_category: "expences sub category",
-          head_accounts: [],
+          head_accounts: [
+            {
+              account_code: "5464575",
+              account_name: "ngrt ltd",
+              credit: 6456,
+              debit: 6456,
+            },
+            {
+              account_code: "464564",
+              account_name: "rete ltd",
+              credit: 6546,
+              debit: 464,
+            },
+            {
+              account_code: "34543",
+              account_name: "terter ltd",
+              credit: 5345,
+              debit: 53453,
+            },
+          ],
         },
       ],
       // {

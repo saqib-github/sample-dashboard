@@ -54,8 +54,10 @@
             label="Search"
             flat
             solo
+            v-model.trim="searchValue"
             :prepend-inner-icon="mdiMagnify"
             background-color="white"
+            @blur="filterBySearch"
           ></v-text-field
         ></v-flex>
         <v-flex xs5 md1 class="pl-9">
@@ -90,32 +92,33 @@
                       <v-col cols="4">
                         <v-select
                           class="mt-1"
-                          :items="types"
+                          :items="addTypes"
                           :label="typeSelectLabel"
-                          dense
-                          v-model.trim="type"
-                          outlined
-                          @change="changeType"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-select
-                          class="mt-1"
-                          :items="subTypes"
-                          :label="subTypeSelectLabel"
-                          v-model.trim="subType"
+                          v-model.trim="add_type"
                           dense
                           outlined
-                          @change="changeSubType"
                         ></v-select>
                       </v-col>
                       <v-col cols="4">
                         <v-text-field
-                          label="Name of Sub Category*"
+                          label="Sub Type*"
                           required
+                          solo
+                          v-model.trim="add_sub_type"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-text-field
+                          label="Sub Category*"
+                          required
+                          solo
+                          v-model.trim="add_sub_category"
                         ></v-text-field>
                       </v-col>
                     </v-row>
+                    <p v-if="invalid" class="red--text">
+                      Please Select type and enter both values
+                    </p>
                   </v-container>
                   <small>*indicates required field</small>
                 </v-card-text>
@@ -124,7 +127,9 @@
                   <v-btn color="blue darken-1" text @click="dialog = false">
                     Close
                   </v-btn>
-                  <v-btn color="blue darken-1" text> Add </v-btn>
+                  <v-btn color="blue darken-1" text @click="addData">
+                    Add
+                  </v-btn>
                 </v-card-actions>
               </v-card>
               <!-- dialog box code  -->
@@ -136,58 +141,60 @@
     <!-- searchbar and Add button -->
 
     <v-container>
-      <h2>Head of Accounts</h2>
+      <h2>{{ type }} head of accounts</h2>
     </v-container>
     <!-- data headers -->
     <v-container>
-      <v-layout row wrap class="white rounded-lg">
-        <v-flex xm12 md3 class="pl-4 pt-3">
+      <v-layout row wrap class="white rounded-lg" justify-space-between>
+        <v-flex xm12 md2 class="pl-4 pt-3">
           <v-lazy height="35"><h4>Account Code</h4></v-lazy>
         </v-flex>
-        <v-flex xm12 md3 class="pl-4 pt-3">
+        <v-flex xm12 md2 class="pl-4 pt-3">
           <v-lazy height="35"> <h4>Account Name</h4></v-lazy>
         </v-flex>
-        <v-flex xm12 md3 class="pl-4 pt-3">
-          <v-lazy height="35"> <h4>Credit</h4></v-lazy>
-        </v-flex>
-        <v-flex xm12 md3 class="pl-4 pt-3">
-          <v-lazy height="35"> <h4>Debit</h4></v-lazy>
+        <v-flex xm12 md2 class=" pt-3">
+          <v-lazy height="35"> <h4>Edit Options</h4></v-lazy>
         </v-flex>
       </v-layout>
     </v-container>
     <!-- data headers -->
 
-    <!-- main data -->
-    <v-container>
-      <v-layout
+    <!-- account data component -->
+    <all-accounts
+      v-for="data in filteredAccounts"
+      :key="data.id"
+      :head_accounts="data.head_accounts"
+      :search_value="searchValue"
+    >
+    </all-accounts>
+    <!-- <v-layout
         row
         wrap
         class="white rounded-lg"
-        v-for="head in headOfAccounts"
-        :key="head.AccountCode"
+        v-for="data in all_data[1].head_accounts"
+        :key="data.account_code"
       >
         <v-flex xm12 md3 class="pl-4 pt-3">
           <v-lazy height="35"
-            ><p>{{ head.AccountCode }}</p></v-lazy
+            ><p>{{ data.account_code }}</p></v-lazy
           >
         </v-flex>
         <v-flex xm12 md3 class="pl-4 pt-3">
           <v-lazy height="35">
-            <p>{{ head.AccountName }}</p></v-lazy
+            <p>{{ data.account_name }}</p></v-lazy
           >
         </v-flex>
         <v-flex xm12 md3 class="pl-4 pt-3">
           <v-lazy height="35">
-            <p>{{ head.credit }}</p></v-lazy
+            <p>{{ data.credit }}</p></v-lazy
           >
         </v-flex>
         <v-flex xm12 md3 class="pl-4 pt-3">
           <v-lazy height="35">
-            <p>{{ head.debit }}</p></v-lazy
+            <p>{{ data.debit }}</p></v-lazy
           >
         </v-flex>
-      </v-layout>
-    </v-container>
+      </v-layout> -->
     <!-- main data -->
   </v-container>
 </template>
@@ -195,44 +202,31 @@
 <script>
 import { mdiPlus } from "@mdi/js";
 import { mdiMagnify } from "@mdi/js";
+import AllAccounts from "../components/AllAccounts.vue";
 export default {
+  components: { AllAccounts },
   data() {
     return {
       mdiPlus: mdiPlus,
       mdiMagnify: mdiMagnify,
       subTypes: [],
       subCategories: [],
-      headOfAccounts: [
-        {
-          AccountCode: "947937",
-          AccountName: "ghh Ltd",
-          credit: 100,
-          debit: 50,
-        },
-        {
-          AccountCode: "6546456",
-          AccountName: "dfhfh Ltd",
-          credit: 87,
-          debit: 50,
-        },
-        {
-          AccountCode: "565",
-          AccountName: "dfh Ltd",
-          credit: 100,
-          debit: 50,
-        },
-        {
-          AccountCode: "546654",
-          AccountName: "hrt Ltd",
-          credit: 1040,
-          debit: 5560,
-        },
-      ],
+      // v-models for adding values to array
+      addTypes: ["assets", "liability", "equity", "revenue", "expenses"],
+      add_type: "",
+      add_sub_type: "",
+      add_sub_category: "",
+      // v-models for adding values to array
       dialog: false,
       all_data: this.$store.getters["chartofaccounts/getData"],
+      // select v-model values
       type: "",
       subType: "",
       subCategory: "",
+      // select v-model values
+      invalid: false,
+      // search value v-model
+      searchValue: "",
       typeSelectedLabel: "Type Selected",
       typeSelectLabel: "Select Type",
       subTypeSelectedLabel: "Sub Type Selected",
@@ -242,9 +236,9 @@ export default {
     };
   },
   methods: {
-    changeSubCategory() {
-      this.subCategorySelectLabel = this.subCategorySelectedLabel;
-    },
+    // changeSubCategory() {
+    //   this.subCategorySelectLabel = this.subCategorySelectedLabel;
+    // },
     changeType() {
       console.log(this.type);
       let subtypes = [];
@@ -256,6 +250,8 @@ export default {
         });
         console.log("subtypes", subtypes);
         this.subTypes = subtypes;
+        this.subType = "";
+        this.subCategory = "";
         return subtypes;
       }
       // if (this.type.toLowerCase() === "liability".toLowerCase()) {
@@ -314,18 +310,76 @@ export default {
         return subCategories;
       }
     },
+
+    addData() {
+      console.log(
+        this.add_type + " " + this.add_sub_type + " " + this.add_sub_category
+      );
+      if (this.add_type && this.add_sub_type && this.add_sub_category) {
+        const newData = {
+          id: this.all_data.length + 1,
+          type: this.add_type,
+          sub_type: this.add_sub_type,
+          sub_category: this.add_sub_category,
+          head_accounts: [],
+        };
+        console.log("dispatch new data", newData);
+        this.$store.dispatch("chartofaccounts/addData", newData);
+      } else {
+        this.invalid = true;
+      }
+    },
+    filterBySearch() {
+      console.log("this filtered accounts", this.filteredAccounts);
+    },
   },
   computed: {
     types() {
       const types = [];
-      let data = this.$store.getters["chartofaccounts/getData"];
-      console.log(data);
-      for (let i = 0; i < data.length; i++) {
-        types.push(data[i].type);
+      // let data = this.$store.getters["chartofaccounts/getData"];
+      console.log("all data", this.all_data);
+      console.log("account data", this.all_data[0].id);
+      // console.log("head accounts", data[0].head_accounts);
+      for (let i = 0; i < this.all_data.length; i++) {
+        types.push(this.all_data[i].type);
       }
       console.log(types);
       return types;
     },
+    filteredAccounts() {
+      return this.all_data.filter((head) => {
+        // if (head.type.includes(this.type)) {
+        //   console.log("this is type", this.type);
+        //   return true;
+        // }
+        if (
+          head.sub_type.includes(this.subType) &&
+          head.type.includes(this.type)
+        ) {
+          return true;
+        }
+        if (
+          head.sub_type.includes(this.subType) &&
+          head.type.includes(this.type) &&
+          head.sub_category.includes(this.subCategory)
+        ) {
+          return true;
+        }
+        return false;
+      });
+    },
+    // headAccounts() {
+    //   const headOfAccounts = [];
+    //   let data = this.$store.getters["chartofaccounts/getData"];
+    //   for (let i = 0; i < data.length; i++) {
+    //     for (let j = 0; j < data[i].head_accounts.length; j++) {
+    //       headOfAccounts.push(data[i].head_accounts[j]);
+    //     }
+    //   }
+    //   console.log("head of accounts", headOfAccounts);
+    //   console.log("type", this.type);
+    //   return headOfAccounts;
+    // },
   },
 };
 </script>
