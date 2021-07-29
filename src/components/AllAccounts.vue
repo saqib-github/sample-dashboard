@@ -122,12 +122,14 @@
 
 <script>
 import { mdiDotsVertical } from "@mdi/js";
+import Swal from "sweetalert2";
 export default {
   name: "all-accounts",
   props: ["head_accounts", "search_value"],
 
   data() {
     return {
+      // dncjnvndfev
       mdiDotsVertical: mdiDotsVertical,
       offset: true,
       dialog: false,
@@ -158,12 +160,26 @@ export default {
     },
     deleteAccount(delete_account_code) {
       console.log("delete account code", delete_account_code);
-      for (let i = 0; i < this.filtered_accounts.length; i++) {
-        if (delete_account_code === this.filtered_accounts[i].account_code) {
-          this.filtered_accounts.splice(i, 1);
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          for (let i = 0; i < this.filtered_accounts.length; i++) {
+            if (
+              delete_account_code === this.filtered_accounts[i].account_code
+            ) {
+              this.filtered_accounts.splice(i, 1);
+            }
+          }
         }
-      }
-      
+      });
     },
   },
   computed: {

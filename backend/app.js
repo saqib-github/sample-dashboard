@@ -1,34 +1,25 @@
-// eslint-disable-next-line no-undef
-const express = require("express");
-// eslint-disable-next-line no-undef
-const mongoose = require("mongoose");
-// eslint-disable-next-line no-undef
-const userRoutes= require("./routes/userRoutes.js");
-require("dotenv/config")
+import express from "express";
+import pkg from "mongoose";
+const { connect, set,} = pkg;
+import chartofaccounts from "./routes/chartofAccounts.js";
+import bodyParser from "body-parser";
+import "dotenv/config";
 
 const app = express();
 
-//middleware
-app.use("/users", userRoutes);
+app.use(bodyParser.json());
 
-//Routes
-app.get("/", (req, res) => {
-  res.send("hello");
-});
-app.get("/posts", (req, res) => {
-  res.send("posts");
-});
+//middleware
+app.use("/chartofaccounts", chartofaccounts);
 
 // connect to database
+set('useNewUrlParser', true);
+set('useFindAndModify', false);
+set('useCreateIndex', true);
+set('useUnifiedTopology', true);
 
-mongoose.connect(
-
-  process.env.DB_CONNECTION,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("connected to database");
-    console.log(process.env.DB_CONNECTION);
-  }
-);
+connect(process.env.DB_CONNECTION)
+  .then(() => console.log("connected"))
+  .catch((err) => console.log(err));
 
 app.listen(3000);

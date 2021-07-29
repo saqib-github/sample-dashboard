@@ -40,7 +40,7 @@
           ></v-select>
         </v-flex>
         <v-flex md2 xm12 class="pt-8">
-          <v-btn outlined>Start Filtering</v-btn>
+          <v-btn outlined @click="checkSweetAlert">Start Filtering</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
@@ -51,7 +51,7 @@
       <v-layout row wrap justify-space-between class="mt-10">
         <v-flex xs7 md3>
           <v-text-field
-            label="Search"
+            label="Search By Code"
             flat
             solo
             v-model.trim="searchValue"
@@ -145,17 +145,18 @@
     </v-container>
     <!-- data headers -->
     <v-container>
-      <v-layout row wrap class="white rounded-lg" justify-space-between>
+      
+      <!-- <v-layout row wrap class="white rounded-lg" justify-space-between>
         <v-flex xm12 md2 class="pl-4 pt-3">
           <v-lazy height="35"><h4>Account Code</h4></v-lazy>
         </v-flex>
         <v-flex xm12 md2 class="pl-4 pt-3">
           <v-lazy height="35"> <h4>Account Name</h4></v-lazy>
         </v-flex>
-        <v-flex xm12 md2 class=" pt-3">
+        <v-flex xm12 md2 class="pt-3">
           <v-lazy height="35"> <h4>Edit Options</h4></v-lazy>
         </v-flex>
-      </v-layout>
+      </v-layout> -->
     </v-container>
     <!-- data headers -->
 
@@ -196,6 +197,15 @@
         </v-flex>
       </v-layout> -->
     <!-- main data -->
+    <!-- <template>
+      <v-data-table
+        dense
+        :headers="headers"
+        :items="desserts"
+        item-key="name"
+        class="elevation-1"
+      ></v-data-table>
+    </template> -->
   </v-container>
 </template>
 
@@ -203,10 +213,75 @@
 import { mdiPlus } from "@mdi/js";
 import { mdiMagnify } from "@mdi/js";
 import AllAccounts from "../components/AllAccounts.vue";
+import Swal from "sweetalert2";
 export default {
   components: { AllAccounts },
   data() {
     return {
+      desserts: [
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+        {
+          account_code: 75356334,
+          account_name: "fd bdewcf",
+        },
+      ],
+      headers: [
+        {
+          text: "Account Code",
+          align: "start",
+          sortable: false,
+          value: "account_code",
+        },
+        { text: "Account Name", value: "account_name" },
+      ],
+      // debvewjcvwec
       mdiPlus: mdiPlus,
       mdiMagnify: mdiMagnify,
       subTypes: [],
@@ -307,8 +382,12 @@ export default {
         });
         console.log("sub categories", subCategories);
         this.subCategories = subCategories;
+        this.subCategory = "";
         return subCategories;
       }
+    },
+    checkSweetAlert() {
+      Swal.fire("hello", "bhjevjesdv ", "success");
     },
 
     addData() {
@@ -325,8 +404,15 @@ export default {
         };
         console.log("dispatch new data", newData);
         this.$store.dispatch("chartofaccounts/addData", newData);
+        this.dialog = false;
+        Swal.fire("Saved!", "", "success");
       } else {
         this.invalid = true;
+        Swal.fire({
+          icon: "error",
+          title: "opps",
+          text: "something went wrong",
+        });
       }
     },
     filterBySearch() {
