@@ -35,12 +35,6 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   console.log(req.body);
-  // const newAccount = new data({
-  //   account_code: req.body.account_code,
-  //   account_name: req.body.account_name,
-  //   credit: req.body.credit,
-  //   debit: req.body.debit,
-  // });
   try {
     const savedData = await data.findByIdAndUpdate(req.params.id, {
       $push: {

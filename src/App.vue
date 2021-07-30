@@ -26,6 +26,7 @@ export default {
     backgroundColor: "#F4F4F7",
     margin: 0,
   }),
+  
 };
 </script>
 <style scoped>
