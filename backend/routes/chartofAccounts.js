@@ -51,5 +51,21 @@ router.put("/:id", async (req, res) => {
     res.json(err);
   }
 });
+router.delete("/:id", async (req, res) => {
+  console.log("params id", req.params.id);
+  console.log("body id", req.body);
+
+  try {
+    (await data.updateOne(
+      { _id: req.params.id },
+      { $pull: { head_accounts: { _id: req.body._id } } },
+      { multi: true, safe: true }
+    ))
+      ? res.json("deleted successfully")
+      : res.json("deleted failed");
+  } catch (err) {
+    res.json(err);
+  }
+});
 
 export default router;

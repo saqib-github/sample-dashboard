@@ -2,7 +2,6 @@ import axios from "axios";
 export default {
   addData(context, data) {
     const newData = {
-      id: data.id,
       type: data.type,
       sub_type: data.sub_type,
       sub_category: data.sub_category,
@@ -30,7 +29,7 @@ export default {
         // handle success
         const newData = response.data;
         context.commit("getAllData", newData);
-        console.log(response.data);
+        console.log('all data action method', response.data);
       })
       .catch(function (error) {
         // handle error

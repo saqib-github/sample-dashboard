@@ -191,13 +191,6 @@ export default {
       );
     },
   },
-  // watch: {
-  //   filteredBySearch() {
-  //     if (this.search_value) {
-  //       this.filteredBySearch;
-  //     }
-  //   },
-  // },
 };
 </script>
 

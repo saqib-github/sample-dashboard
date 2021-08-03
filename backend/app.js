@@ -9,6 +9,7 @@ import "dotenv/config";
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(cors());
 
 //middleware
@@ -20,6 +21,7 @@ set("useFindAndModify", false);
 set("useCreateIndex", true);
 set("useUnifiedTopology", true);
 
+// eslint-disable-next-line no-undef
 connect(process.env.DB_CONNECTION)
   .then(() => console.log("connected"))
   .catch((err) => console.log(err));
