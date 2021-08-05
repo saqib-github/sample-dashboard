@@ -1,4 +1,4 @@
-# sample-dashboard
+# Employee Management System
 
 ![Screenshot](manageEmployee.png)
 ![Screenshot](addEmployee.png)
