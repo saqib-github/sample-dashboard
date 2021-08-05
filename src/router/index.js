@@ -6,6 +6,9 @@ import AccountSettings from "../views/AccountSettings.vue";
 import Subscriptions from "../views/Subscriptions.vue";
 import Invoices from "../views/Invoices.vue";
 import PaymentMethods from "../views/PaymentMethods.vue";
+import EmployeeDetailsView from "../views/EmployeeDetailsView.vue";
+import ManageEmployees from "../views/ManageEmployees.vue";
+import AddEmployee from "../views/AddEmployee.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +42,21 @@ const routes = [
     path: "/paymentmethods",
     name: "PaymentMethods",
     component: PaymentMethods,
+  }, 
+  {
+    path: "/employeedetailsview",
+    name: "EmployeedetailsView",
+    component: EmployeeDetailsView,
+  }, 
+  {
+    path: "/manageemployees",
+    name: "ManageEmployees",
+    component: ManageEmployees,
+  },  
+  {
+    path: "/addemployee",
+    name: "AddEmployee",
+    component: AddEmployee,
   },
   // {
   //   path: "/about",

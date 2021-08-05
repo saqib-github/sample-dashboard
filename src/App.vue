@@ -23,7 +23,7 @@ export default {
 
   data: () => ({
     //
-    backgroundColor: "#F4F4F7",
+    backgroundColor: "white",
     margin: 0,
   }),
 };

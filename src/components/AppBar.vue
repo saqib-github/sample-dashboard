@@ -6,56 +6,34 @@
       clipped
       hide-overlay
       :style="{ top: $vuetify.application.top + 'px', zIndex: 6 }"
+      color="green"
+
     >
       <v-list dense>
-        <v-list-item
-          ><v-btn text to="/managecomputers">
-            <v-icon medium class="pr-2">{{ mdiDesktopClassic }}</v-icon
-            >Manage Computers</v-btn
-          >
-        </v-list-item>
         <v-list-item>
-          <v-btn text to="/">
-            <v-icon medium class="pr-2">{{
+          <v-btn text to="/manageemployees" color="white">
+            <v-icon medium class="pr-2" >{{
               mdiAccountSupervisorOutline
             }}</v-icon
-            >Manage users</v-btn
+            >Manage Employees</v-btn
           >
         </v-list-item>
         <v-list-item>
-          <v-btn text to="/accountsettings"
+          <v-btn text to="/addemployee" color="white"
             ><v-icon medium class="pr-2">{{ mdiAccountOutline }}</v-icon
-            >Account Settings</v-btn
-          >
-        </v-list-item>
-        <v-list-item
-          ><v-btn text to="/subscriptions"
-            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon>
-            Subscriptions</v-btn
-          >
-        </v-list-item>
-        <v-list-item
-          ><v-btn text to="/invoices"
-            ><v-icon medium class="pr-2">{{ mdiReceipt }}</v-icon>
-            Invoices</v-btn
-          >
-        </v-list-item>
-        <v-list-item>
-          <v-btn text to="/paymentmethods"
-            ><v-icon medium class="pr-2">{{ mdiKeyOutline }}</v-icon> Payment
-            Methods</v-btn
+            >Add Employee</v-btn
           >
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app clipped-left dark color="white" flat>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="black"
+    <v-app-bar app clipped-left dark color="green" flat>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white"
         ><v-icon v-if="drawer">{{ mdiArrowLeft }}</v-icon></v-app-bar-nav-icon
       >
-      <v-toolbar-title class="black--text">
-        <span class="text-h6"> Apple Tech</span>
+      <v-toolbar-title class="white--text">
+        <span class="text-h6"> Employee Management System</span>
         <v-btn icon>
-          <v-icon color="black">{{ mdiChevronDown }}</v-icon></v-btn
+          <v-icon color="white">{{ mdiChevronDown }}</v-icon></v-btn
         ></v-toolbar-title
       >
       <v-spacer></v-spacer>
