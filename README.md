@@ -1,6 +1,7 @@
 # sample-dashboard
 
-![Screenshot](dashboard.png)
+![Screenshot](manageEmployee.png)
+![Screenshot](addEmployee.png)
 
 ## Project setup
 ```
